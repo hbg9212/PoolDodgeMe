@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public GameObject Player;
     public TMP_Text TimeTxt;
     private float _Sec;
     private int _Min;
