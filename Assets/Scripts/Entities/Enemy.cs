@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public Vector3 Dir;
 
     private bool _IsFire = false;
+    private bool _IsFreez = false;
 
     private void Awake()
     {
@@ -59,8 +60,12 @@ public class Enemy : MonoBehaviour
             {
                 _anim.SetTrigger("Fire");
                 yield return new WaitForSeconds(2f);
-                _IsFire = false;
                 Fire();
+            }
+            else if(_IsFreez)
+            {
+                yield return new WaitForSeconds(2f);
+                _IsFreez = false;
                 StartCoroutine(Reload());
             }
             else
@@ -73,8 +78,7 @@ public class Enemy : MonoBehaviour
                 else
                 {
                     direction = new Vector2(Random.Range(-0.5f, 0.6f), Random.Range(-3, 4));
-                }
-                
+                }  
                 _rigidbody.velocity = direction;
                 yield return new WaitForSeconds(2f);
             }
@@ -88,12 +92,28 @@ public class Enemy : MonoBehaviour
         _IsFire = true;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("SnowBall"))
+            return;
+        if(!_IsFreez)
+        {
+            _IsFire = false;
+            _IsFreez = true;
+            _anim.SetTrigger("Freez");
+        }
+    }
 
     private void Fire()
     {
-        Transform bullet = PoolManager.I.Get((int)PoolManager.PrefabId.Poop).transform;
-        bullet.position = transform.position;
-        bullet.GetComponent<Bullet>().Init(15f, Dir);
-        AudioManager.I.PlaySfx(AudioManager.Sfx.Poop);
+        if(_IsFire)
+        {
+            Transform bullet = PoolManager.I.Get((int)PoolManager.PrefabId.Poop).transform;
+            bullet.position = transform.position;
+            bullet.GetComponent<Bullet>().Init(15f, Dir);
+            AudioManager.I.PlaySfx(AudioManager.Sfx.Poop);
+            _IsFire = false;
+            StartCoroutine(Reload());
+        }
     }
 }

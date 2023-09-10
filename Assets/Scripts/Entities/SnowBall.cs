@@ -18,9 +18,17 @@ public class SnowBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Wall"))
-            return;
-
-        gameObject.SetActive(false);
+        if (collision.CompareTag("Wall") || collision.CompareTag("Enemy"))
+        {
+            gameObject.SetActive(false);
+        }
+        else if(collision.CompareTag("Trap"))
+        {
+            if(collision.GetComponent<Trap>()._IsTrap)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+          
     }
 }

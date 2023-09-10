@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(Reload());
         AudioManager.I.PlayBgm(true);
     }
 
@@ -39,6 +40,17 @@ public class GameManager : MonoBehaviour
         {
             _Sec = 0f;
             _Min++;
+        }
+    }
+
+    IEnumerator Reload()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(Random.Range(1f, 2f));
+            Transform trap = PoolManager.I.Get((int)PoolManager.PrefabId.Trap).transform;
+            trap.position = new Vector3(-27,0,0);
+            trap.GetComponent<Trap>().GetPosition();
         }
     }
 }
