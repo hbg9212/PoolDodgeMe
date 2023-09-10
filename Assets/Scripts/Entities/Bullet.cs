@@ -16,15 +16,11 @@ public class Bullet : MonoBehaviour
         _rigidbody.velocity = dir * speed;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
+        if (!collision.CompareTag("Wall"))
+            return;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gameObject.SetActive(false);
     }
 }
