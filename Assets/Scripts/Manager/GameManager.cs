@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Reload());
+        StartCoroutine(Trpas());
+        StartCoroutine(Bombs());
         AudioManager.I.PlayBgm(true);
     }
 
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator Reload()
+    IEnumerator Trpas()
     {
         while(true)
         {
@@ -51,6 +52,17 @@ public class GameManager : MonoBehaviour
             Transform trap = PoolManager.I.Get((int)PoolManager.PrefabId.Trap).transform;
             trap.position = new Vector3(-27,0,0);
             trap.GetComponent<Trap>().GetPosition();
+        }
+    }
+
+    IEnumerator Bombs()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(1f, 2f));
+            Transform bomb = PoolManager.I.Get((int)PoolManager.PrefabId.Bomb).transform;
+            bomb.position = new Vector3(-27, 0, 0);
+            bomb.GetComponent<ItemBomb>().GetPosition();
         }
     }
 }

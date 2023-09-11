@@ -47,7 +47,6 @@ public class Trap : MonoBehaviour
         {
             if (collision.CompareTag("Player") || collision.CompareTag("SnowBall"))
             {
-                Debug.Log("Ãæµ¹");
                 SpawnerManager.I.SetSpawner(_positionX, _positionY, 0);
                 gameObject.SetActive(false);
             }
