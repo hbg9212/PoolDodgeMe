@@ -26,7 +26,9 @@ public class Shooting : MonoBehaviour
 
     private void OnShoot()
     {
-        Debug.Log("Å¬¸¯");
+        Transform bullet = PoolManager.I.Get((int)PoolManager.PrefabId.SnowBall).transform;
+        bullet.position = transform.position;
+        bullet.GetComponent<SnowBall>().Init(15f, _aimDirection.normalized);
     }
 
 }
