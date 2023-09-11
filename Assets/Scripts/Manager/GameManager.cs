@@ -6,15 +6,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    private float _Seconds;
-    private int _Minutes;
-    public TMP_Text _TimeText;
+    public static GameManager I;
 
     private void Awake()
     {
-        Instance = this;
-   
+        I = this;
     }
 
     public GameObject Player;
@@ -32,19 +28,19 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        UpdateTimer();
+        Timer();
     }
 
-    void UpdateTimer()
+    void Timer()
     {
-        _Seconds += Time.deltaTime;
+        _Sec += Time.deltaTime;
 
-        _TimeText.text = string.Format($"{(int)_Minutes:D2}:{(int)_Seconds:D2}");
+        TimeTxt.text = string.Format($"{_Min:D2}:{(int)_Sec:D2}");
 
-        if ((int)_Seconds > 59)
+        if((int)_Sec > 59)
         {
-            _Seconds = 0f;
-            _Minutes++;
+            _Sec = 0f;
+            _Min++;
         }
     }
 
