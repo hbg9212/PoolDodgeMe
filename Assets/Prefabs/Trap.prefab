@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 525806757201141271}
   - component: {fileID: 6872867008088645891}
   - component: {fileID: 4270069223689486265}
+  - component: {fileID: 5721082916335236821}
   m_Layer: 0
   m_Name: Trap
   m_TagString: Trap
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990c1fb03a69c0a49abae3bc9a3a687a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsTrap: 0
 --- !u!60 &6872867008088645891
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -237,3 +239,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5721082916335236821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9223353173794989962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad0de1ca4f9d1e84ebf5b5778e9029bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

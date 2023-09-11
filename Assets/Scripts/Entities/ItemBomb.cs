@@ -37,13 +37,8 @@ public class ItemBomb : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            Bullet[] b = FindObjectsOfType<Bullet>();
-            foreach (Bullet g in b)
-            {
-                g.gameObject.SetActive(false);
-            }
-            Trap[] t = FindObjectsOfType<Trap>();
-            foreach (Trap g in t)
+            Bomb[] b = FindObjectsOfType<Bomb>();
+            foreach (Bomb g in b)
             {
                 g.gameObject.SetActive(false);
             }
