@@ -37,11 +37,15 @@ public class ItemBomb : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            Bomb[] b = FindObjectsOfType<Bomb>();
-            foreach (Bomb g in b)
+            Bomb[] b = PoolManager.I.GetComponentsInChildren<Bomb>();
+            if(b.Length > 0)
             {
-                g.gameObject.SetActive(false);
+                foreach (Bomb g in b)
+                {
+                    g.gameObject.SetActive(false);
+                }
             }
+            AudioManager.I.PlaySfx(AudioManager.Sfx.Bomb);
             _anim.SetTrigger("Bomb");
             StartCoroutine(Bomb());
         }

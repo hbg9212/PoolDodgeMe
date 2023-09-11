@@ -23,7 +23,7 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayer;
     int channelIndex;
 
-    public enum Sfx { Poop, Hit };
+    public enum Sfx { Poop, Hit, Bomb, Freez };
     private void Init()
     {
         GameObject bgmObject = new GameObject("BgmPlayer");

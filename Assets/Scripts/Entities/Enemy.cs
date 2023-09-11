@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour
             }
             else if(_IsFreez)
             {
+
                 yield return new WaitForSeconds(2f);
                 _IsFreez = false;
                 StartCoroutine(Reload());
@@ -98,6 +99,7 @@ public class Enemy : MonoBehaviour
             return;
         if(!_IsFreez)
         {
+            AudioManager.I.PlaySfx(AudioManager.Sfx.Freez);
             _IsFire = false;
             _IsFreez = true;
             _anim.SetTrigger("Freez");
