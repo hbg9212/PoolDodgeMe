@@ -7,11 +7,14 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager I;
+    private EnemySpawner enemySpawner;
 
     private void Awake()
     {
         I = this;
+        enemySpawner = GetComponent<EnemySpawner>();
     }
+
 
     public GameObject Player;
     public TMP_Text TimeTxt;
@@ -24,6 +27,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Trpas());
         StartCoroutine(Bombs());
         AudioManager.I.PlayBgm(true);
+        enemySpawner.SpawnLeftRight();
+        StartCoroutine(SpawnLeft());
+        StartCoroutine(SpawnUp());
+        StartCoroutine(SpawnAll());
     }
 
     void Update()
@@ -37,10 +44,37 @@ public class GameManager : MonoBehaviour
 
         TimeTxt.text = string.Format($"{_Min:D2}:{(int)_Sec:D2}");
 
-        if((int)_Sec > 59)
+        if ((int)_Sec > 59)
         {
             _Sec = 0f;
             _Min++;
+        }
+    }
+
+    IEnumerator SpawnLeft()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(10f);
+            enemySpawner.SpawnLeft();
+        }
+    }
+
+    IEnumerator SpawnUp()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(30f);
+            enemySpawner.SpawnUp();
+        }
+    }
+
+    IEnumerator SpawnAll()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(60f);
+            enemySpawner.SpawnAll();
         }
     }
 
@@ -49,9 +83,13 @@ public class GameManager : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(Random.Range(1f, 2f));
-            Transform trap = PoolManager.I.Get((int)PoolManager.PrefabId.Trap).transform;
-            trap.position = new Vector3(-27,0,0);
-            trap.GetComponent<Trap>().GetPosition();
+
+            if (PoolManager.I.GetComponentsInChildren<Trap>().Length < 20)
+            {
+                Transform trap = PoolManager.I.Get((int)PoolManager.PrefabId.Trap).transform;
+                trap.position = new Vector3(-27, 0, 0);
+                trap.GetComponent<Trap>().GetPosition();
+            }
         }
     }
 
@@ -60,9 +98,13 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(1f, 2f));
-            Transform bomb = PoolManager.I.Get((int)PoolManager.PrefabId.Bomb).transform;
-            bomb.position = new Vector3(-27, 0, 0);
-            bomb.GetComponent<ItemBomb>().GetPosition();
+
+            if(PoolManager.I.GetComponentsInChildren<ItemBomb>().Length < 3)
+            {
+                Transform bomb = PoolManager.I.Get((int)PoolManager.PrefabId.Bomb).transform;
+                bomb.position = new Vector3(-27, 0, 0);
+                bomb.GetComponent<ItemBomb>().GetPosition();
+            }
         }
     }
 }

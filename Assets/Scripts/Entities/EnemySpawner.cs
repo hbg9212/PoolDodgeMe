@@ -4,44 +4,84 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab; // 생성할 Enemy 프리팹
-    public float spawnInterval = 5.0f; // Enemy 생성 간격 (초)
+    //상하좌우 생성 채크
+    private bool _IsLeft = true;
+    private bool _IsUp = true;
 
-    private Vector3[] spawnPositions; // Enemy가 생성될 위치 좌표 배열
-    private int currentSpawnPositionIndex = 0; // 현재 생성 위치 인덱스
-    private float timer = 0.0f; // 생성 타이머
-
-    // 생성될 위치 좌표를 Awake()에서 초기화
-    private void Awake()
+    //좌우 생성 함수
+    public void SpawnLeft()
     {
-        // 원하는 위치 좌표를 직접 설정
-        spawnPositions = new Vector3[]
+        if(_IsLeft)
         {
-            new Vector3(13f, 0f, 0f), // 오른쪽
-            new Vector3(-13f, 0f, 0f), // 왼쪽
-            new Vector3(0f, 7f, 0f), // 위
-            new Vector3(0f, -7f, 0f) // 아래
-        };
-    }
-
-    private void Update()
-    {
-        // 일정 시간 간격으로 Enemy 생성
-        timer += Time.deltaTime;
-        if (timer >= spawnInterval)
+            _IsLeft = false;
+            Transform enemy = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+            enemy.position = new Vector3(13, 0, 0);
+            enemy.GetComponent<Enemy>().Init();
+        }
+        else
         {
-            SpawnEnemy();
-            timer = 0.0f; // 타이머 초기화
+            _IsLeft = true;
+            Transform enemy = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+            enemy.position = new Vector3(-13, 0, 0);
+            enemy.GetComponent<Enemy>().Init();
         }
     }
 
-    private void SpawnEnemy()
+    //상하 생성 함수
+    public void SpawnUp()
     {
-        // 현재 인덱스에 해당하는 위치에 Enemy 생성
-        Vector3 spawnPosition = spawnPositions[currentSpawnPositionIndex];
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        if (_IsUp)
+        {
+            _IsUp = false;
+            Transform enemy = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+            enemy.position = new Vector3(0, 7, 0);
+            enemy.GetComponent<Enemy>().Init();
+        }
+        else
+        {
+            _IsUp = true;
+            Transform enemy = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+            enemy.position = new Vector3(0, -7, 0);
+            enemy.GetComponent<Enemy>().Init();
+        }
+    }
 
-        // 다음 인덱스로 이동 (순환)
-        currentSpawnPositionIndex = (currentSpawnPositionIndex + 1) % spawnPositions.Length;
+    //좌우 모두 생성
+    public void SpawnLeftRight()
+    {
+        Transform L = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+        L.position = new Vector3(13, 0, 0);
+        L.GetComponent<Enemy>().Init();
+        Transform R = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+        R.position = new Vector3(-13, 0, 0);
+        R.GetComponent<Enemy>().Init();
+    }
+
+    //상하 모두 생성
+    public void SpawnUpDown()
+    {
+        Transform U = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+        U.position = new Vector3(0, 7, 0);
+        U.GetComponent<Enemy>().Init();
+        Transform D = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+        D.position = new Vector3(0, -7, 0);
+        D.GetComponent<Enemy>().Init();
+    }
+
+    //상하좌우 모두 생성
+    public void SpawnAll()
+    {
+        Transform L = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+        L.position = new Vector3(13, 0, 0);
+        L.GetComponent<Enemy>().Init();
+        Transform R = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+        R.position = new Vector3(-13, 0, 0);
+        R.GetComponent<Enemy>().Init();
+        Transform U = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+        U.position = new Vector3(0, 7, 0);
+        U.GetComponent<Enemy>().Init();
+        Transform D = PoolManager.I.Get((int)PoolManager.PrefabId.Enemy).transform;
+        D.position = new Vector3(0, -7, 0);
+        D.GetComponent<Enemy>().Init();
     }
 }

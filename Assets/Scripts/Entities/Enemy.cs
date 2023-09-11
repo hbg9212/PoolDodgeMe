@@ -13,15 +13,12 @@ public class Enemy : MonoBehaviour
     private bool _IsFire = false;
     private bool _IsFreez = false;
 
-    private void Awake()
+    // Start is called before the first frame update
+    public void Init()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         Vector3 targetPos = GameManager.I.Player.transform.position;
         Vector3 dir = targetPos - transform.position;
         if(Mathf.Abs(dir.x) > 12)
