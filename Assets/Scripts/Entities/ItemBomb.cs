@@ -9,20 +9,28 @@ public class ItemBomb : MonoBehaviour
     private int _positionX;
     private int _positionY;
 
+    private static int maxBombCount = 3; // ÃÖ´ë Çã¿ë ÆøÅº ¼ö
+    private static int currentBombCount = 0; // ÇöÀç ÆøÅº ¼ö
+
+
     public void GetPosition()
     {
-        _positionX = Random.Range(0, 19);
-        _positionY = Random.Range(0, 7);
-
-        if (SpawnerManager.I.GetSpawner(_positionX, _positionY) == 0)
+        if (currentBombCount < maxBombCount)
         {
-            SpawnerManager.I.SetSpawner(_positionX, _positionY, 1);
-            Init();
+            _positionX = Random.Range(0, 19);
+            _positionY = Random.Range(0, 7);
 
-        }
-        else
-        {
-            GetPosition();
+            if (SpawnerManager.I.GetSpawner(_positionX, _positionY) == 0)
+            {
+                SpawnerManager.I.SetSpawner(_positionX, _positionY, 1);
+                Init();
+                currentBombCount++; // ÆøÅº »ý¼º ½Ã ÆøÅº ¼ö Áõ°¡
+
+            }
+            else
+            {
+                GetPosition();
+            }
         }
     }
 
@@ -57,5 +65,7 @@ public class ItemBomb : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         SpawnerManager.I.SetSpawner(_positionX, _positionY, 0);
         gameObject.SetActive(false);
+        currentBombCount--; // ÆøÅºÀÌ »ç¶óÁú ¶§ ÆøÅº ¼ö °¨¼Ò
+
     }
 }
