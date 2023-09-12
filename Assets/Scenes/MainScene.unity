@@ -684,7 +684,7 @@ AudioHighPassFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CutoffFrequency: 5000
   m_HighpassResonanceQ: 1
 --- !u!1 &520228757
@@ -12720,8 +12720,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 898fde3ce923561478867108645a2ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgmDropdown: {fileID: 0}
   bgmClip: {fileID: 8300000, guid: 267a0562368421345b5308f4c853e2ab, type: 3}
+  bgmClip2: {fileID: 8300000, guid: da4678ed38fd01d4d84b533e6c50d427, type: 3}
   bgmVolume: 0.2
+  bgm_Slider: {fileID: 0}
+  bgm_Mute: {fileID: 0}
   sfxClip:
   - {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
   - {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
@@ -12729,6 +12733,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 78419f98379502c4dbfb2774bc94e7c1, type: 3}
   sfxVolume: 0.2
   channels: 16
+  sfx_Slider: {fileID: 0}
+  sfx_Mute: {fileID: 0}
 --- !u!4 &1809903518
 Transform:
   m_ObjectHideFlags: 0
