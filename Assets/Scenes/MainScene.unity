@@ -12724,6 +12724,7 @@ MonoBehaviour:
   bgmDropdown: {fileID: 0}
   bgmClip: {fileID: 8300000, guid: 267a0562368421345b5308f4c853e2ab, type: 3}
   bgmClip2: {fileID: 8300000, guid: da4678ed38fd01d4d84b533e6c50d427, type: 3}
+  bgmClip3: {fileID: 8300000, guid: ab871cbc981b787428cd52c46de67c00, type: 3}
   bgmVolume: 0.2
   bgm_Slider: {fileID: 0}
   bgm_Mute: {fileID: 0}
