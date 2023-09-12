@@ -32,35 +32,35 @@ public class AudioManager : MonoBehaviour
     public Slider sfx_Slider;
     public GameObject sfx_Mute;
 
-    private void Start()
-    {
-        bgmDropdown.onValueChanged.AddListener(ChangeBGM);
+    //private void Start()
+    //{
+    //    //bgmDropdown.onValueChanged.AddListener(ChangeBGM);
 
-        bgmPlayer = gameObject.AddComponent<AudioSource>();
-        bgmPlayer.playOnAwake = false;
-    }
-    private void ChangeBGM(int bgmIndex)
-    {
-        // Dropdown에서 선택한 BGM 인덱스에 따라 BGM을 변경합니다.
-        switch (bgmIndex)
-        {
-            case 0:
-                bgmPlayer.clip = bgmClip;
-                break;
-            case 1:
-                bgmPlayer.clip = bgmClip2;
-                break;
-            default:
-                bgmPlayer.clip = null;
-                break;
-        }
+    //    bgmPlayer = gameObject.AddComponent<AudioSource>();
+    //    bgmPlayer.playOnAwake = false;
+    //}
+    //private void ChangeBGM(int bgmIndex)
+    //{
+    //    // Dropdown에서 선택한 BGM 인덱스에 따라 BGM을 변경합니다.
+    //    switch (bgmIndex)
+    //    {
+    //        case 0:
+    //            bgmPlayer.clip = bgmClip;
+    //            break;
+    //        case 1:
+    //            bgmPlayer.clip = bgmClip2;
+    //            break;
+    //        default:
+    //            bgmPlayer.clip = null;
+    //            break;
+    //    }
 
-        // BGM 재생
-        if (bgmPlayer.clip != null)
-        {
-            bgmPlayer.Play();
-        }
-    }
+    //    // BGM 재생
+    //    if (bgmPlayer.clip != null)
+    //    {
+    //        bgmPlayer.Play();
+    //    }
+    //}
 
     public enum Sfx { Poop, Hit, Bomb, Freez };
     private void Init()
