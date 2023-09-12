@@ -10,7 +10,7 @@ public class PoolManager : MonoBehaviour
 
     List<GameObject>[] pools;
 
-    public enum PrefabId { Enemy, Poop, SnowBall, Trap, Bomb };
+    public enum PrefabId { Enemy, Poop, SnowBall, Trap, Bomb, Boss };
 
     void Awake()
     {

@@ -19,8 +19,7 @@ public class Enemy : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
 
-        Vector3 targetPos = GameManager.I.Player.transform.position;
-        Vector3 dir = targetPos - transform.position;
+        Vector3 dir = Vector3.zero - transform.position;
         if(Mathf.Abs(dir.x) > 12)
         {
             dir = dir.normalized;

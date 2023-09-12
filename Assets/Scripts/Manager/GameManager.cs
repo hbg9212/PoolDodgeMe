@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enemySpawner.SpawnBoss(100,2f);
         StartCoroutine(Trpas());
         StartCoroutine(Bombs());
         AudioManager.I.PlayBgm(true);
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(10f);
+
             enemySpawner.SpawnLeft();
         }
     }
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(60f);
+
             enemySpawner.SpawnAll();
         }
     }

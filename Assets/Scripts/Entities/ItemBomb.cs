@@ -9,6 +9,8 @@ public class ItemBomb : MonoBehaviour
     private int _positionX;
     private int _positionY;
 
+    private bool _IsTrigger = true;
+
     public void GetPosition()
     {
         _positionX = Random.Range(0, 19);
@@ -27,15 +29,18 @@ public class ItemBomb : MonoBehaviour
 
     private void Init()
     {
+        _IsTrigger = true;
         _anim = GetComponent<Animator>();
         transform.position = new Vector3(_positionX - 9, _positionY - 3, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!_IsTrigger) return;
 
         if (collision.CompareTag("Player"))
         {
+            _IsTrigger = false;
             Bomb[] b = PoolManager.I.GetComponentsInChildren<Bomb>();
             if(b.Length > 0)
             {

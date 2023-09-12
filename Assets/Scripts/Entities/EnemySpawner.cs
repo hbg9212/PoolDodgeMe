@@ -84,4 +84,11 @@ public class EnemySpawner : MonoBehaviour
         D.position = new Vector3(0, -7, 0);
         D.GetComponent<Enemy>().Init();
     }
+
+    public void SpawnBoss(int hp, float speed)
+    {
+        Transform B = PoolManager.I.Get((int)PoolManager.PrefabId.Boss).transform;
+        B.position = new Vector3(0, 0, 0);
+        B.GetComponent<Boss>().Init(hp, speed);
+    }
 }
