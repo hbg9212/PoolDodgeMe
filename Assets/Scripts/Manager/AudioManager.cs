@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public Dropdown bgmDropdown;
     public AudioClip bgmClip;
     public AudioClip bgmClip2;
+    public AudioClip bgmClip3;
     public float bgmVolume;
     AudioSource bgmPlayer;
     AudioHighPassFilter bgmEffect;
@@ -35,9 +36,9 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         bgmDropdown.onValueChanged.AddListener(ChangeBGM);
-
         bgmPlayer = gameObject.AddComponent<AudioSource>();
         bgmPlayer.playOnAwake = false;
+        bgmPlayer.clip = bgmClip;
     }
     private void ChangeBGM(int bgmIndex)
     {
@@ -49,6 +50,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case 1:
                 bgmPlayer.clip = bgmClip2;
+                break;
+            case 2:
+                bgmPlayer.clip = bgmClip3;
                 break;
             default:
                 bgmPlayer.clip = null;

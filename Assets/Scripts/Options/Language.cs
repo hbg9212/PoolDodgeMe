@@ -1,45 +1,75 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 public class LanguageManager : MonoBehaviour
 {
-    public Dropdown languageDropdown; 
-    public Text textToTranslate;
-
-    private Dictionary<string, Dictionary<string, string>> languageData;
-    private string currentLanguage = "한국어"; 
-
-    void Start()
+    public Dropdown Language;
+    public GameObject TextKr;
+    public GameObject TextEng;
+    private void Start()
     {
+        Language.onValueChanged.AddListener(ChangeLanguage);
 
-        LoadLanguageData();
-        languageDropdown.onValueChanged.AddListener(ChangeLanguage);
-        UpdateText();
     }
-
-    void LoadLanguageData()
+    private void ChangeLanguage(int Index)
     {
-        // languageData["English"]["Hello"] = "Hello";
-        // languageData["Spanish"]["Hello"] = "Hola";
-        // languageData["French"]["Hello"] = "Bonjour";
-    }
 
-    void ChangeLanguage(int languageIndex)
-    {
-        currentLanguage = languageDropdown.options[languageIndex].text;
-        UpdateText();
-    }
-
-    void UpdateText()
-    {
-        if (languageData.ContainsKey(currentLanguage) && languageData[currentLanguage].ContainsKey("Hello"))
+        switch (Index)
         {
-            textToTranslate.text = languageData[currentLanguage]["Hello"];
-        }
-        else
-        {
-            textToTranslate.text = "Translation not available.";
-        }
+            case 0:
+                TextKr.SetActive(true);
+                TextEng.SetActive(false);
+                break;
+            case 1:
+                TextKr.SetActive(false);
+                TextEng.SetActive(true);
+                break;
+
+            default:
+
+                break;
+        }    
     }
 }
+
+    //public Dropdown languageDropdown; 
+    //public Text textToTranslate;
+
+    //private Dictionary<string, Dictionary<string, string>> languageData;
+    //private string currentLanguage = "한국어"; 
+
+    //void Start()
+    //{
+
+    //    LoadLanguageData();
+    //    languageDropdown.onValueChanged.AddListener(ChangeLanguage);
+    //    UpdateText();
+    //}
+
+    //void LoadLanguageData()
+    //{
+    //    // languageData["English"]["Hello"] = "Hello";
+    //    // languageData["Spanish"]["Hello"] = "Hola";
+    //    // languageData["French"]["Hello"] = "Bonjour";
+    //}
+
+    //void ChangeLanguage(int languageIndex)
+    //{
+    //    currentLanguage = languageDropdown.options[languageIndex].text;
+    //    UpdateText();
+    //}
+
+    //void UpdateText()
+    //{
+    //    if (languageData.ContainsKey(currentLanguage) && languageData[currentLanguage].ContainsKey("Hello"))
+    //    {
+    //        textToTranslate.text = languageData[currentLanguage]["Hello"];
+    //    }
+    //    else
+    //    {
+    //        textToTranslate.text = "Translation not available.";
+    //    }
+    //}
+
