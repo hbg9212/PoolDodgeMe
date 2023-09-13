@@ -14,5 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: f20206222ae50cd4f8b6a8015b4646da
-  m_Scenes: []
+  - enabled: 1
+    path: Assets/Scenes/HiddenIntro.unity
+    guid: 2967e061c3a1c424c8c3ceb0d64363be
   m_configObjects: {}
