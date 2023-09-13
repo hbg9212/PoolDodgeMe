@@ -30,7 +30,7 @@ public class Boss : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(_IsHit)
+        if (_IsHit)
         {
             _rigidbody.velocity = (_target.position - _rigidbody.position) * -2;
         }

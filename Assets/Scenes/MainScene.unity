@@ -8340,6 +8340,7 @@ MonoBehaviour:
   - {fileID: 8160661422303066728, guid: b3d3024f4278907408dacedbe7f5195c, type: 3}
   - {fileID: 705392311069764109, guid: 4901ad40e4c30da4889c2f78e3a2679f, type: 3}
   - {fileID: 6683454629747451756, guid: 1a0f1776bfb62d34ca1a8e2b094fd56b, type: 3}
+  - {fileID: 998832330220697783, guid: b9fe38108e8b8b34f873740a29b2ef32, type: 3}
 --- !u!4 &1058781722
 Transform:
   m_ObjectHideFlags: 0

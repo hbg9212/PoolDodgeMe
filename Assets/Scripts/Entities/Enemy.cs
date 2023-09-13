@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
         _anim = GetComponent<Animator>();
 
         Vector3 dir = Vector3.zero - transform.position;
-        if(Mathf.Abs(dir.x) > 12)
+        if (Mathf.Abs(dir.x) > 12)
         {
             dir = dir.normalized;
             Dir = new Vector3(dir.x, 0, 0);
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(transform.position.x > 0)
+        if (transform.position.x > 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
                 yield return new WaitForSeconds(2f);
                 Fire();
             }
-            else if(_IsFreez)
+            else if (_IsFreez)
             {
 
                 yield return new WaitForSeconds(2f);
@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
                 else
                 {
                     direction = new Vector2(Random.Range(-0.5f, 0.6f), Random.Range(-3, 4));
-                }  
+                }
                 _rigidbody.velocity = direction;
                 yield return new WaitForSeconds(2f);
             }
@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
     {
         if (!collision.CompareTag("SnowBall"))
             return;
-        if(!_IsFreez)
+        if (!_IsFreez)
         {
             AudioManager.I.PlaySfx(AudioManager.Sfx.Freez);
             _IsFire = false;
@@ -104,7 +104,7 @@ public class Enemy : MonoBehaviour
 
     private void Fire()
     {
-        if(_IsFire)
+        if (_IsFire)
         {
             Transform bullet = PoolManager.I.Get((int)PoolManager.PrefabId.Poop).transform;
             bullet.position = transform.position;
