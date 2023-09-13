@@ -29,5 +29,24 @@ public class TimeStop : MonoBehaviour
         Option.SetActive(false);
         Time.timeScale = 1;
     }
+
+    public AudioClip Click;
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.clip = Click;
+    }
+
+    public void PlaySoundOnClick()
+    {
+        audioSource.Play();
+    }
 }
 
