@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         enemySpawner = GetComponent<EnemySpawner>();
     }
 
-
+    public GameObject GameOver;
     public GameObject Player;
     public TMP_Text TimeTxt;
     private float _Sec;
@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 2;
         HpController.I.SetHp(100f);
         _IsPlay = true;
         StartCoroutine(Trpas());
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            GameOver.SetActive(true);
             Time.timeScale = 0;
         }
     }

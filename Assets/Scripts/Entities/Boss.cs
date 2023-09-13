@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour
     private int _Hp;
     private float _Speed;
     private bool _IsHit = false;
+    private bool _IsDelay = false;
 
     public void Init(int hp, float speed)
     {
@@ -26,6 +27,7 @@ public class Boss : MonoBehaviour
         _Hp = hp;
         _Speed = speed;
         mySlider.value = _Hp / _MaxHp;
+        _rigidbody.velocity = Vector2.zero;
     }
 
     void FixedUpdate()
@@ -54,12 +56,26 @@ public class Boss : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-        else if (collision.CompareTag("Player"))
+
+        if (collision.CompareTag("Player"))
         {
-            AudioManager.I.PlaySfx(AudioManager.Sfx.Hit);
-            HpController.I.CallHpAdd(-15f);
+            if(!_IsDelay)
+            {
+                _IsDelay = true;
+                AudioManager.I.PlaySfx(AudioManager.Sfx.Hit);
+                HpController.I.CallHpAdd(-15f);
+                StartCoroutine(Delay());
+            }
+
         }
     }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _IsDelay = false;
+    }
+
 
     IEnumerator Hit()
     {

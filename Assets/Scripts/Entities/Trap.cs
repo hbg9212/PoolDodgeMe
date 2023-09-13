@@ -12,7 +12,6 @@ public class Trap : MonoBehaviour
     public void GetPosition()
     {
         _IsTrap = false;
-        transform.GetComponent<SpriteRenderer>().enabled = false;
         _positionX = Random.Range(0, 19);
         _positionY = Random.Range(0, 7);
 
@@ -48,8 +47,8 @@ public class Trap : MonoBehaviour
             {
                 SpawnerManager.I.SetSpawner(_positionX, _positionY, 0);
                 gameObject.SetActive(false);
-
-                if(collision.CompareTag("Player"))
+                transform.GetComponent<SpriteRenderer>().enabled = false;
+                if (collision.CompareTag("Player"))
                 {
                     AudioManager.I.PlaySfx(AudioManager.Sfx.Hit);
                     HpController.I.CallHpAdd(-10f);
