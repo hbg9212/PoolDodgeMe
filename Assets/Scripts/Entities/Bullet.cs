@@ -18,9 +18,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Wall"))
-            return;
-
-        gameObject.SetActive(false);
+        if (collision.CompareTag("Wall"))
+        {
+            gameObject.SetActive(false); // 벽과 충돌 시 발사한 객체 비활성화
+        }
+        else if (collision.CompareTag("Player"))
+        {
+            // Player와 충돌한 경우
+            gameObject.SetActive(false); // 발사한 객체를 비활성화
+        }
     }
 }

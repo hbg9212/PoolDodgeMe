@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(Trpas());
         StartCoroutine(Bombs());
+        StartCoroutine(Hearts());
         AudioManager.I.PlayBgm(true);
         enemySpawner.SpawnLeftRight();
         StartCoroutine(SpawnLeft());
@@ -109,4 +110,19 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    IEnumerator Hearts()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(1f, 2f));
+
+            if (PoolManager.I.GetComponentsInChildren<ItemHeart>().Length < 3)
+            {
+                Transform heart = PoolManager.I.Get((int)PoolManager.PrefabId.Heart).transform;
+                heart.position = new Vector3(-27, 0, 0);
+                heart.GetComponent<ItemHeart>().GetPosition();
+            }
+        }
+    }
+
 }
