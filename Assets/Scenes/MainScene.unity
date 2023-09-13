@@ -17662,6 +17662,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1809903517}
+    - target: {fileID: 3132534916670382914, guid: 672402c63d4875b46acef20c61243c46, type: 3}
+      propertyPath: TextKr2
+      value: 
+      objectReference: {fileID: 1380409730117559255}
+    - target: {fileID: 3132534916670382914, guid: 672402c63d4875b46acef20c61243c46, type: 3}
+      propertyPath: TextEng2
+      value: 
+      objectReference: {fileID: 8751801892759304497}
     - target: {fileID: 3896795539507717213, guid: 672402c63d4875b46acef20c61243c46, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
