@@ -8,6 +8,9 @@ public class LanguageManager : MonoBehaviour
     public Dropdown Language;
     public GameObject TextKr;
     public GameObject TextEng;
+    public GameObject TextKr2;
+    public GameObject TextEng2;
+
     private void Start()
     {
         Language.onValueChanged.AddListener(ChangeLanguage);
@@ -20,11 +23,15 @@ public class LanguageManager : MonoBehaviour
         {
             case 0:
                 TextKr.SetActive(true);
+                TextKr2.SetActive(true);
                 TextEng.SetActive(false);
+                TextEng2.SetActive(false);
                 break;
             case 1:
                 TextKr.SetActive(false);
+                TextKr2.SetActive(false);
                 TextEng.SetActive(true);
+                TextEng2.SetActive(true);
                 break;
 
             default:
