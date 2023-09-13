@@ -39,19 +39,23 @@ public class ItemIce : MonoBehaviour
         {
             _IsTrigger = false;
 
-            //Enemy[] enemies = FindObjectsOfType<Enemy>();
-            //foreach (Enemy enemy in enemies)
-            //{
-            //    enemy.PauseMovement(5.0f); 
-            //}
+            if (collision.CompareTag("Player"))
+            {
+                _IsTrigger = false;
+                Enemy[] E = PoolManager.I.GetComponentsInChildren<Enemy>();
+                if (E.Length > 0)
+                {
+                    foreach (Enemy e in E)
+                    {
+                        e._IsFire = false;
+                        e._IsFreez = true;
+                        e._anim.SetTrigger("Freez");
+                    }
+                }
+                AudioManager.I.PlaySfx(AudioManager.Sfx.Freez);
+                gameObject.SetActive(false);
 
-            //Boss[] bosses = FindObjectsOfType<Boss>();
-            //foreach (Boss boss in bosses)
-            //{
-            //    boss.PauseMovement(5.0f); 
-            //}
-
-            StartCoroutine(DeactivateItem());
+            }
         }
     }
 

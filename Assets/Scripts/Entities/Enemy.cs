@@ -5,13 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
-    private Animator _anim;
+    public Animator _anim;
 
     public GameObject Bullet;
     public Vector3 Dir;
 
-    private bool _IsFire = false;
-    private bool _IsFreez = false;
+    public bool _IsFire = false;
+    public bool _IsFreez = false;
 
     // Start is called before the first frame update
     public void Init()
