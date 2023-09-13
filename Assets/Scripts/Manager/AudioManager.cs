@@ -66,7 +66,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public enum Sfx { Poop, Hit, Bomb, Freez };
+    public enum Sfx { Poop, Hit, Bomb, Freez, Heal };
     private void Init()
     {
         GameObject bgmObject = new GameObject("BgmPlayer");

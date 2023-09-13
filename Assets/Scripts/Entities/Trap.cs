@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
-
     private int _positionX;
     private int _positionY;
 
@@ -49,6 +48,12 @@ public class Trap : MonoBehaviour
             {
                 SpawnerManager.I.SetSpawner(_positionX, _positionY, 0);
                 gameObject.SetActive(false);
+
+                if(collision.CompareTag("Player"))
+                {
+                    AudioManager.I.PlaySfx(AudioManager.Sfx.Hit);
+                    HpController.I.CallHpAdd(-10f);
+                }
             }
         }
     }

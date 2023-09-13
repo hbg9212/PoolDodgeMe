@@ -42,16 +42,22 @@ public class Boss : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("SnowBall"))
-            return;
-        _anim.SetTrigger("Hit");
-        _IsHit = true;
-        StartCoroutine(Hit());
-        _Hp--;
-        mySlider.value = (float)_Hp / (float)_MaxHp;
-        if (_Hp == 0)
+        if (collision.CompareTag("SnowBall"))
         {
-            gameObject.SetActive(false);
+            _anim.SetTrigger("Hit");
+            _IsHit = true;
+            StartCoroutine(Hit());
+            _Hp--;
+            mySlider.value = (float)_Hp / (float)_MaxHp;
+            if (_Hp <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        else if (collision.CompareTag("Player"))
+        {
+            AudioManager.I.PlaySfx(AudioManager.Sfx.Hit);
+            HpController.I.CallHpAdd(-15f);
         }
     }
 

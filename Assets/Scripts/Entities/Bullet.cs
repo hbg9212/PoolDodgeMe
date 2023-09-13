@@ -24,7 +24,8 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.CompareTag("Player"))
         {
-            // Player와 충돌한 경우
+            AudioManager.I.PlaySfx(AudioManager.Sfx.Hit);
+            HpController.I.CallHpAdd(-10f);
             gameObject.SetActive(false); // 발사한 객체를 비활성화
         }
     }

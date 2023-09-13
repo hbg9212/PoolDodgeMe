@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager I;
     private EnemySpawner enemySpawner;
-
     private void Awake()
     {
         I = this;
@@ -21,9 +20,13 @@ public class GameManager : MonoBehaviour
     private float _Sec;
     private int _Min;
 
+    public bool _IsPlay = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        HpController.I.SetHp(100f);
+        _IsPlay = true;
         StartCoroutine(Trpas());
         StartCoroutine(Bombs());
         StartCoroutine(Hearts());
@@ -36,7 +39,14 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Timer();
+        if(_IsPlay)
+        {
+            Timer();
+        }
+        else
+        {
+            Time.timeScale = 0;
+        }
     }
 
     void Timer()
@@ -54,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnLeft()
     {
-        while (true)
+        while (_IsPlay)
         {
             yield return new WaitForSeconds(10f);
 
@@ -64,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnUp()
     {
-        while (true)
+        while (_IsPlay)
         {
             yield return new WaitForSeconds(30f);
             enemySpawner.SpawnUp();
@@ -73,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnAll()
     {
-        while (true)
+        while (_IsPlay)
         {
             yield return new WaitForSeconds(60f);
             enemySpawner.SpawnBoss(50*_Min, (1f+_Min));
@@ -83,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Trpas()
     {
-        while(true)
+        while(_IsPlay)
         {
             yield return new WaitForSeconds(Random.Range(1f, 2f));
 
@@ -98,7 +108,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Bombs()
     {
-        while (true)
+        while (_IsPlay)
         {
             yield return new WaitForSeconds(Random.Range(1f, 2f));
 
@@ -112,7 +122,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator Hearts()
     {
-        while (true)
+        while (_IsPlay)
         {
             yield return new WaitForSeconds(Random.Range(1f, 2f));
 

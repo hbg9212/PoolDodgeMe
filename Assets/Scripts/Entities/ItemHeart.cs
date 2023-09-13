@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ItemHeart : MonoBehaviour
 {
-    private Animator _anim;
 
     private int _positionX;
     private int _positionY;
@@ -27,7 +26,6 @@ public class ItemHeart : MonoBehaviour
 
     private void Init()
     {
-        _anim = GetComponent<Animator>();
         transform.position = new Vector3(_positionX - 9, _positionY - 3, 0);
     }
 
@@ -35,14 +33,13 @@ public class ItemHeart : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            StartCoroutine(Heart());
-        }
-    }
+            if(HpController.I._MaxHp > HpController.I._Hp)
+            {
+                HpController.I.CallHpAdd(10f);
+                AudioManager.I.PlaySfx(AudioManager.Sfx.Heal);
+                gameObject.SetActive(false);
+            }
 
-    IEnumerator Heart()
-    {
-        yield return new WaitForSeconds(0.4f);
-        SpawnerManager.I.SetSpawner(_positionX, _positionY, 0);
-        gameObject.SetActive(false);
+        }
     }
 }
