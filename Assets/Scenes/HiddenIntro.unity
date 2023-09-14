@@ -782,6 +782,7 @@ GameObject:
   - component: {fileID: 1930212565}
   - component: {fileID: 1930212564}
   - component: {fileID: 1930212563}
+  - component: {fileID: 1930212567}
   m_Layer: 5
   m_Name: HorrorTitle
   m_TagString: Untagged
@@ -917,6 +918,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930212561}
   m_CullTransparentMesh: 1
+--- !u!114 &1930212567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930212561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d716eccb61aa1844282c4864a44650eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2088080966
 GameObject:
   m_ObjectHideFlags: 0
