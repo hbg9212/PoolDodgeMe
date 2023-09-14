@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 2;
+        Time.timeScale = 1;
         HpController.I.SetHp(100f);
         _IsPlay = true;
         StartCoroutine(Trpas());
