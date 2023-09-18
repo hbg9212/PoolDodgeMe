@@ -17121,6 +17121,7 @@ MonoBehaviour:
   GameOver: {fileID: 1051256109}
   Player: {fileID: 2002778389}
   TimeTxt: {fileID: 985996381}
+  LevelTxt: {fileID: 777083582}
   _IsPlay: 0
 --- !u!4 &2036604628
 Transform:

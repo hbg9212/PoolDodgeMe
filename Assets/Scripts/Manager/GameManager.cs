@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameOver;
     public GameObject Player;
     public TMP_Text TimeTxt;
+    public TMP_Text LevelTxt;
     private float _Sec;
     private int _Min;
 
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
 
         if ((int)_Sec > 59)
         {
+            LevelTxt.text = _Min.ToString();
             _Sec = 0f;
             _Min++;
         }
